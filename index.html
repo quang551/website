@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi hình ngẫu nhiên</title>
+    <style>
+        fieldset {
+            width: 450px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        legend {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        img {
+            width: 400px;
+            height: auto;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 5px 15px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<fieldset>
+    <legend>PHÁT HÌNH NGẪU NHIÊN</legend>
+    
+    <img id="hinhAnh" src="h1.png" alt="Hình ngẫu nhiên"><br>
+    <button onclick="play()">Play</button>
+    <button onclick="stop()">Stop</button>
+</fieldset>
+
+<script>
+    const images = [
+        "h1.png", "h2.png", "h3.jpg", "h4.jpg", "h5.jpg",
+        "h6.jpg", "h7.jpg", "h8.jpg", "h9.png", "h10.png"
+    ];
+
+    let timerId = null;
+
+    function play() {
+        if (timerId !== null) return; // Nếu đã chạy rồi thì không chạy nữa
+
+        function doiHinh() {
+            const index = Math.floor(Math.random() * images.length);
+            document.getElementById("hinhAnh").src = images[index];
+
+            timerId = setTimeout(doiHinh, 1000); // Lặp lại sau 1 giây
+        }
+
+        doiHinh(); // Bắt đầu đổi hình
+    }
+
+    function stop() {
+        clearTimeout(timerId);
+        timerId = null;
+    }
+</script>
+
+</body>
+</html>
